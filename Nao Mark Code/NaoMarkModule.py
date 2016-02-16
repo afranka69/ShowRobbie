@@ -5,6 +5,7 @@ from naoqi import ALProxy
 import math
 import almath
 
+#Returns a multiple dimension array of naomark data
 def getMarkData (IP, portNumber):
     #Set up the memory proxy.
     memoryProxy = ALProxy("ALMemory", IP, portNumber)
@@ -25,12 +26,15 @@ def getMarkData (IP, portNumber):
 
     return markData
 
+#Finds and returns a NaoMark's number
 def getMarkNumber (IP, portNumber):
     #get mark data
     markData = getMarkData(IP, portNumber)
     markNumber = markData[1][0][1][0]
     return markNumber
 
+#Finds and returns the vertical and horiztontal
+#offset of a nao mark relative to nao's camera
 def getMarkAngles (IP, portNumber):
     #get mark data
     markData = getMarkData(IP, portNumber)
@@ -41,6 +45,8 @@ def getMarkAngles (IP, portNumber):
 
     return wzCamera, wyCamera
 
+#Finds and returns the x,y,z position of a nao mark
+#relative to nao's camera
 def getMarkXYZ (IP, portNumber, landmarkSize):
     markData = getMarkData(IP, portNumber)
     currentCamera = "CameraTop"
