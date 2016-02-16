@@ -18,8 +18,7 @@ def getMarkData (IP, portNumber):
 
     #Wait for a mark to be detected
     markData = memoryProxy.getData("LandmarkDetected")
-    while (markData is None or len(markData) == 0):
-        markData = memoryProxy.getData("LandmarkDetected")
+    markData = memoryProxy.getData("LandmarkDetected")
 
     #Unsubscribe to proxy
     landmarkProxy.unsubscribe("GetLandMarkData")
@@ -27,17 +26,14 @@ def getMarkData (IP, portNumber):
     return markData
 
 #Finds and returns a NaoMark's number
-def getMarkNumber (IP, portNumber):
-    #get mark data
-    markData = getMarkData(IP, portNumber)
+def getMarkNumber (markData):
+
     markNumber = markData[1][0][1][0]
     return markNumber
 
 #Finds and returns the vertical and horiztontal
 #offset of a nao mark relative to nao's camera
-def getMarkAngles (IP, portNumber):
-    #get mark data
-    markData = getMarkData(IP, portNumber)
+def getMarkAngles (markData):
 
     #Get the landmark positions(Relative to Camera)
     wzCamera = markData[1][0][0][1]
@@ -47,8 +43,8 @@ def getMarkAngles (IP, portNumber):
 
 #Finds and returns the x,y,z position of a nao mark
 #relative to nao's camera
-def getMarkXYZ (IP, portNumber, landmarkSize):
-    markData = getMarkData(IP, portNumber)
+def getMarkXYZ (markData, landmarkSize):
+
     currentCamera = "CameraTop"
 
     # Retrieve landmark angular size in radians.
