@@ -43,7 +43,7 @@ def getMarkAngles (markData):
 
 #Finds and returns the x,y,z position of a nao mark
 #relative to nao's camera
-def getMarkXYZ (markData, landmarkSize):
+def getMarkXYZ (IP, portNumber, markData, landmarkSize):
 
     currentCamera = "CameraTop"
 
