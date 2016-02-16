@@ -11,20 +11,28 @@ IP = "10.0.0.6"
 #Port Number of the Robot
 PORT = 9559
 
-
-
 while(True):
-    #get a face
-    face = FacialRecognitionModule.getFaceName(IP, PORT)
+    foundFace = False
+    faceData = FacialRecognitionModule.getFaceData(IP, PORT)
 
-    #wait until face is found
-    while (face[1] == "null"):
-        face = FacialRecognitionModule.getFaceName(IP,PORT)
-        print ("Face not found")
+    while(not foundFace):
+        #Get data until face is found
+        while (faceData is None or len(faceData) == 0):
+            print ("looking for face")
+            faceData = FacialRecognitionModule.getFaceData(IP, PORT)
 
-    if(face[0] > 0.4):
-        #Make proxy to speech
-        speechProxy = ALProxy("ALTextToSpeech", IP, PORT)
-        speechProxy.say("Hello " + str(face[1]))
+        if(FacialRecognitionModule.getFaceConfidince(faceData) > 0.4):
+            foundFace = True
+        else:
+            print ("conf found")
+            faceData = FacialRecognitionModule.getFaceData(IP, PORT)
+
+
+    faceName = FacialRecognitionModule.getFaceName(faceData)
+
+
+    #Make proxy to speech
+    speechProxy = ALProxy("ALTextToSpeech", IP, PORT)
+    speechProxy.say("Hello " + str(faceName))
 
     time.sleep(1)
