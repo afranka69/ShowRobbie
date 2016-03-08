@@ -7,10 +7,10 @@ import FacialRecognitionModule
 import time
 
 #IP of the Robot
-IP = "10.0.0.6"
+IP = "10.0.0.7"
 #Port Number of the Robot
 PORT = 9559
 
-while (FacialRecognitionModule.learnFace(IP,PORT,"Mack")):
+while (FacialRecognitionModule.learnFace(IP,PORT,"Josh")):
     print ("face not learned")
 print ("face learned")

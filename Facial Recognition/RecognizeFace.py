@@ -7,7 +7,7 @@ import FacialRecognitionModule
 import time
 
 #IP of the Robot
-IP = "10.0.0.6"
+IP = "10.0.0.7"
 #Port Number of the Robot
 PORT = 9559
 
@@ -33,6 +33,11 @@ while(True):
 
     #Make proxy to speech
     speechProxy = ALProxy("ALTextToSpeech", IP, PORT)
-    speechProxy.say("Hello " + str(faceName))
+    if(faceName == "Josh"):
+        speechProxy.setParameter("pitchShift", 1.5)
+        speechProxy.say("NO! NO! HELP! Please don't hurt me anymore Josh")
+    else:
+        speechProxy.setParameter("pitchShift", 1.0)
+        speechProxy.say("Hello " + str(faceName) + " I really like you.")
 
     time.sleep(1)
