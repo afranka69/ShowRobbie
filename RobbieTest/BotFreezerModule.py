@@ -1,9 +1,7 @@
-#@file BotFreezerModule.py
 #Adapted from http://doc.aldebaran.com/1-14/dev/python/reacting_to_events.html#python-reacting-to-events
-#to make Nao "freeze" when any of his head tactile sensors are pressed
+#to make Nao "freeze" when his head tactile sensors are pressed
 # -*- encoding: UTF-8 -*-
 
-#imports
 from naoqi import ALProxy
 from naoqi import ALModule
 

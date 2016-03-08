@@ -50,6 +50,7 @@ def lookAroundForMark():
     angleLists = .25
     back = False
     markData = NaoMarkModule.getMarkData(robotIP, PORT)
+    first = True
 
     while(not markFound):
 
@@ -67,6 +68,8 @@ def lookAroundForMark():
 
 
         times = .05
+        if(first):
+            times = 1.0
         isAbsolute = True
         motionProxy.angleInterpolation(names, angleLists, times, isAbsolute)
 
@@ -74,7 +77,7 @@ def lookAroundForMark():
 
         if(not (markData is None or len(markData) ==0)):
             markFound =True
-
+        first = False
     return markData
 
 def turnToHeadStraight(markData):
@@ -143,7 +146,7 @@ def wave():
     isAbsolute = True
     motionProxy.closeHand("RHand")
     motionProxy.angleInterpolation(names, angleLists, timeLists, isAbsolute)
-    motionProxy.setStiffnesses("Body", 0)
+    #motionProxy.setStiffnesses("Body", 0)
 
 def detectMarkAndMoveTo():
     markD = lookAroundForMark()
@@ -163,11 +166,19 @@ motionProxy.setExternalCollisionProtectionEnabled("All", False)
 # print "y " + str(y) + " (in meters)"
 # print "z " + str(z) + " (in meters)"
 
-#turnAround()
-#detectMarkAndMoveTo()
 
 detectMarkAndMoveTo()
+moveForwardY(0,-.25)
+detectMarkAndMoveTo()
+
+
 wave()
+tts.say("hello, I am robbie")
+turnAround()
+detectMarkAndMoveTo()
+moveForwardY(0 , .2)
+detectMarkAndMoveTo()
+turnAround()
 
 
 #motionProxy.changeAngles("HeadYaw",1, 0.1)

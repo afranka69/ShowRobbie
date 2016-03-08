@@ -1,29 +1,15 @@
-#@file BrokerController.py
-#This class can be used for its methods createBroker()
-#and waitToStop(). A living broker is necessary for scripts that
-#have the robot respond to events, such as head tactil presses.
-#So, in BotFreezerTester.py, this class is imported, made a
-#proxy of, and used to create a broker and keep it going
-#until BotFreezerTester's main() is stopped.
-
 import sys
 import time
 
 from naoqi import ALBroker
 from optparse import OptionParser
 
-NAO_IP = "10.0.0.6"
+NAO_IP = "10.0.0.7"
 
 myBroker = None
 
 class BrokerController():
-
-    #Create a broker
     def createBroker(self):
-
-        #Still not sure exactly what pip and pport do, but
-        #they allow a program not to use the actual ip and port
-        #numbers of the robot
         parser = OptionParser()
         parser.add_option("--pip",
             help="Parent broker port. The IP address or your robot",
@@ -50,7 +36,6 @@ class BrokerController():
            pip,         # parent broker IP
            pport)       # parent broker port
 
-    #Keep the broker alive until further notice (KeyboardInterrupt)
     def waitToStop(self):
 
         try:
