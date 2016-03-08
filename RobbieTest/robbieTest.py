@@ -11,6 +11,7 @@ from naoqi import ALProxy
 robotIP = "10.0.0.7"
 PORT = 9559
 postureProxy = ALProxy("ALRobotPosture", robotIP, PORT)
+naomarkSize = .148;
 
 lifeProxy = ALProxy("ALAutonomousLife", robotIP, PORT)
 tts = ALProxy("ALTextToSpeech", robotIP, PORT)
@@ -67,7 +68,7 @@ def lookAroundForMark():
                 back = False
 
 
-        times = .05
+        times = .15
         if(first):
             times = 1.0
         isAbsolute = True
@@ -96,7 +97,8 @@ def turnToHeadStraight(markData):
 
 def detectMarkWalkStraight():
     markD =  lookAroundForMark()
-    x,y,z = NaoMarkModule.getMarkXYZ(robotIP, PORT, markD, .08)
+    global naomarkSize
+    x,y,z = NaoMarkModule.getMarkXYZ(robotIP, PORT, markD, naomarkSize)
     turnToHeadStraight(markD)
     detectMarkAndMoveTo()
 
@@ -150,9 +152,18 @@ def wave():
 
 def detectMarkAndMoveTo():
     markD = lookAroundForMark()
-    x,y,z = NaoMarkModule.getMarkXYZ(robotIP, PORT, markD, .08)
-    moveForwardY(x, y)
+    x,y,z = NaoMarkModule.getMarkXYZ(robotIP, PORT, markD, naomarkSize)
+    moveForwardY(x-.05, y)
 
+def detectMarkAndMoveToRight():
+    markD = lookAroundForMark()
+    x,y,z = NaoMarkModule.getMarkXYZ(robotIP, PORT, markD, naomarkSize)
+    moveForwardY(x, y-.25)
+
+def detectMarkAndMoveToLeft():
+    markD = lookAroundForMark()
+    x,y,z = NaoMarkModule.getMarkXYZ(robotIP, PORT, markD, naomarkSize)
+    moveForwardY(x, y +.25)
 stiffnesses  = 1.0
 motionProxy.setStiffnesses("Body", stiffnesses)
 postureProxy.goToPosture("StandInit", 1.0)
@@ -161,25 +172,18 @@ time.sleep(1)
 motionProxy.setExternalCollisionProtectionEnabled("All", False)
 
 
-#Print information
-# print "x " + str(x) + " (in meters)"
-# print "y " + str(y) + " (in meters)"
-# print "z " + str(z) + " (in meters)"
+detectMarkAndMoveToRight()
 
-
-detectMarkAndMoveTo()
-moveForwardY(0,-.25)
-detectMarkAndMoveTo()
+moveForward(1)
 
 
 wave()
 tts.say("hello, I am robbie")
 turnAround()
-detectMarkAndMoveTo()
-moveForwardY(0 , .2)
+detectMarkAndMoveToLeft()
+
 detectMarkAndMoveTo()
 turnAround()
-
 
 #motionProxy.changeAngles("HeadYaw",1, 0.1)
 #print motionProxy.getAngles("HeadYaw",False)
