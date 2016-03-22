@@ -18,7 +18,7 @@ tts = ALProxy("ALTextToSpeech", robotIP, PORT)
 motionProxy = ALProxy("ALMotion", robotIP, PORT)
 curAngle = 0
 
-stepArray = [["StepHeight", 0.015],["MaxStepX", 0.02]]
+stepArray = [["StepHeight", 0.015],["MaxStepX", 0.02], ["MaxStepTheta", .18]]
 
 
 def turnRight90():
@@ -184,7 +184,7 @@ motionProxy.setExternalCollisionProtectionEnabled("All", False)
 
 
 
-detectMarkAndMoveToRight()
+''''detectMarkAndMoveToRight()
 
 moveForward(1)
 
@@ -195,7 +195,7 @@ turnAround()
 detectMarkAndMoveToLeft()
 
 detectMarkAndMoveTo()
-turnAround()
+turnAround()'''
 
 
 
@@ -204,5 +204,9 @@ turnAround()
 #turnLeft90()
 #print motionProxy.getAngles("HeadYaw", False)
 
+
+turnAround()
+moveForward(.25)
+turnRight90()
 
 postureProxy.goToPosture("Sit", 1.0)
