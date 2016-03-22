@@ -18,16 +18,20 @@ tts = ALProxy("ALTextToSpeech", robotIP, PORT)
 motionProxy = ALProxy("ALMotion", robotIP, PORT)
 curAngle = 0
 
+stepArray = [["StepHeight", 0.015],["MaxStepX", 0.02]]
+
 
 def turnRight90():
     motionProxy.moveInit()
+    motionProxy.setMoveArmsEnabled(True, True)
     time.sleep(1)
     global curAngle
-    motionProxy.moveTo(0, 0, curAngle -1.57)
+    motionProxy.moveTo(0, 0, curAngle -1.57, stepArray)
     curAngle += -1.57
 
 def lookAround():
     motionProxy.moveInit()
+
     time.sleep(1)
 
     names = "HeadYaw"
@@ -105,32 +109,37 @@ def detectMarkWalkStraight():
 
 def turnLeft90():
     motionProxy.moveInit()
+    motionProxy.setMoveArmsEnabled(True, True)
     time.sleep(1)
     global curAngle
-    motionProxy.moveTo(0, 0, curAngle + 1.57)
+    motionProxy.moveTo(0, 0, curAngle + 1.57, stepArray)
     curAngle += 1.57
 
 def turnAround():
     motionProxy.moveInit()
+    motionProxy.setMoveArmsEnabled(True, True)
     time.sleep(1)
     global curAngle
-    motionProxy.moveTo(0,0, curAngle - 3.14)
+    motionProxy.moveTo(0,0, curAngle - 3.14, stepArray)
     curAngle += -3.14
 
 def moveForward(distance):
     motionProxy.moveInit()
+    motionProxy.setMoveArmsEnabled(True, True)
     time.sleep(1)
-    motionProxy.moveTo(distance, 0, 0)
+    motionProxy.moveTo(distance, 0, 0, stepArray)
 
 def moveForwardY(distance, y):
     motionProxy.moveInit()
+    motionProxy.setMoveArmsEnabled(True, True)
     time.sleep(1)
-    motionProxy.moveTo(distance, y, 0)
+    motionProxy.moveTo(distance, y, 0, stepArray)
 
 def moveStrafe(distance, theta):
     motionProxy.moveInit()
+    motionProxy.setMoveArmsEnabled(True, True)
     time.sleep(1)
-    motionProxy.moveTo(distance, 0, theta)
+    motionProxy.moveTo(distance, 0, theta, stepArray)
 
 def wave():
     time.sleep(1)
@@ -164,12 +173,15 @@ def detectMarkAndMoveToLeft():
     markD = lookAroundForMark()
     x,y,z = NaoMarkModule.getMarkXYZ(robotIP, PORT, markD, naomarkSize)
     moveForwardY(x, y +.25)
+
+
 stiffnesses  = 1.0
 motionProxy.setStiffnesses("Body", stiffnesses)
 postureProxy.goToPosture("StandInit", 1.0)
 time.sleep(1)
 
 motionProxy.setExternalCollisionProtectionEnabled("All", False)
+
 
 
 detectMarkAndMoveToRight()
@@ -184,6 +196,8 @@ detectMarkAndMoveToLeft()
 
 detectMarkAndMoveTo()
 turnAround()
+
+
 
 #motionProxy.changeAngles("HeadYaw",1, 0.1)
 #print motionProxy.getAngles("HeadYaw",False)
