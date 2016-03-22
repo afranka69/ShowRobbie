@@ -11,7 +11,7 @@ from naoqi import ALProxy
 robotIP = "10.0.0.7"
 PORT = 9559
 postureProxy = ALProxy("ALRobotPosture", robotIP, PORT)
-naomarkSize = .148;
+naomarkSize = .12;
 
 lifeProxy = ALProxy("ALAutonomousLife", robotIP, PORT)
 tts = ALProxy("ALTextToSpeech", robotIP, PORT)
@@ -205,8 +205,6 @@ turnAround()'''
 #print motionProxy.getAngles("HeadYaw", False)
 
 
-turnAround()
-moveForward(.25)
-turnRight90()
+detectMarkAndMoveTo()
 
 postureProxy.goToPosture("Sit", 1.0)
