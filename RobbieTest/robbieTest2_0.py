@@ -15,6 +15,7 @@ from naoqi import ALProxy
 robotIP = "10.0.0.7"
 PORT = 9559
 postureProxy = ALProxy("ALRobotPosture", robotIP, PORT)
+naomarkSize = .12;
 
 lifeProxy = ALProxy("ALAutonomousLife", robotIP, PORT)
 tts = ALProxy("ALTextToSpeech", robotIP, PORT)
@@ -172,7 +173,7 @@ class customMotions(ALModule):
 
     def detectMarkAndMoveTo(self):
         markD = customMotions.lookAroundForMark(self)
-        print "mark found"
+        print "mark found " + robotIP
         x,y,z = NaoMarkModule.getMarkXYZ(robotIP, PORT, markD, naomarkSize)
         print "mitches to here"
         print "x: " + str(x) + "  y: " + str(y) + "   z:" + str(z)

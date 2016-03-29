@@ -1,0 +1,32 @@
+'''
+Speach Recognition
+ for Robbie
+@author Mack Sutherland
+@date 3/28/2016
+'''
+
+#imports
+import time
+import almath
+
+from naoqi import ALProxy
+robotIP = "10.0.0.7"
+PORT = 9559
+
+speechRec = ALProxy("ALSpeechRecognition", robotIP, PORT)
+memory = ALProxy("ALMemory", robotIP, PORT)
+speechRec.setLanguage("English")
+
+vocabulary = ["yes", "no", "please"]
+speechRec.setVocabulary(vocabulary, True)
+
+speechRec.subscribe("Test_ASR")
+
+time.sleep(20)
+
+
+speechRec.unsubscribe("Test_ASR")
+
+data = memory.getData("WordRecognized")
+
+print( "data: %s" % data )
