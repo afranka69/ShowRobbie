@@ -36,9 +36,9 @@ class customMotions(ALModule):
         motionProxy.moveInit()
         motionProxy.setMoveArmsEnabled(True, True)
         time.sleep(1)
-        global curAngle
-        motionProxy.moveTo(0, 0, curAngle -1.57, stepArray)
-        curAngle += -1.57
+
+        motionProxy.moveTo(0, 0, -1.57, stepArray)
+
 
     def lookAround(self):
         motionProxy.moveInit()
@@ -122,17 +122,17 @@ class customMotions(ALModule):
         motionProxy.moveInit()
         motionProxy.setMoveArmsEnabled(True, True)
         time.sleep(1)
-        global curAngle
-        motionProxy.moveTo(0, 0, curAngle + 1.57, stepArray)
-        curAngle += 1.57
+
+        motionProxy.moveTo(0, 0, 1.57, stepArray)
+
 
     def turnAround(self):
         motionProxy.moveInit()
         motionProxy.setMoveArmsEnabled(True, True)
         time.sleep(1)
         global curAngle
-        motionProxy.moveTo(0,0, curAngle - 3.14, stepArray)
-        curAngle += -3.14
+        motionProxy.moveTo(0,0, 3.14, stepArray)
+
 
     def moveForward(self,distance):
         motionProxy.moveInit()
@@ -177,17 +177,25 @@ class customMotions(ALModule):
         x,y,z = NaoMarkModule.getMarkXYZ(robotIP, PORT, markD, naomarkSize)
         print "mitches to here"
         print "x: " + str(x) + "  y: " + str(y) + "   z:" + str(z)
-        customMotions.moveForwardY(self,x-.05, y)
+        customMotions.moveForwardY(self,x-.15, y)
+
+    def detectMarkAndMoveToBalcony(self):
+        markD = customMotions.lookAroundForMark(self)
+        print "mark found " + robotIP
+        x,y,z = NaoMarkModule.getMarkXYZ(robotIP, PORT, markD, naomarkSize)
+        print "mitches to here"
+        print "x: " + str(x) + "  y: " + str(y) + "   z:" + str(z)
+        customMotions.moveForwardY(self,x *.5, y)
 
     def detectMarkAndMoveToRight(self):
         markD = customMotions.lookAroundForMark(self)
         x,y,z = NaoMarkModule.getMarkXYZ(robotIP, PORT, markD, naomarkSize)
-        customMotions.moveForwardY(self,x, y-.25)
+        customMotions.moveForwardY(self,x, y-.35)
 
     def detectMarkAndMoveToLeft(self):
         markD = customMotions.lookAroundForMark(self)
         x,y,z = NaoMarkModule.getMarkXYZ(robotIP, PORT, markD, naomarkSize)
-        customMotions.moveForwardY(self,x, y +.25)
+        customMotions.moveForwardY(self,x, y +.30)
 
 
 
