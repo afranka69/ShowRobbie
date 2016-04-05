@@ -50,7 +50,7 @@ def main():
     motionProxy.setExternalCollisionProtectionEnabled("All", False)
 
 
-    id = cm.post.detectMarkAndMoveToRight()
+    ''' id = cm.post.detectMarkAndMoveToRight()
     cm.wait(id,0)
     id = cm.post.detectMarkAndMoveToBalcony()
     cm.wait(id,0)
@@ -69,13 +69,15 @@ def main():
     id = cm.post.detectMarkAndMoveTo()
     cm.wait(id,0)
     id = cm.post.turnAround()
-    cm.wait(id,0)
+    cm.wait(id,0)'''
 
     #id = cm.post.turnAround()
     #cm.wait(id, 0)
     #time.sleep(2)
     #tts.say("I am turned around")
 
+    id = cm.post.detectMarkAndMoveToLeft()
+    cm.wait(id,0)
 
     postureProxy.goToPosture("Sit", 1.0)
 
