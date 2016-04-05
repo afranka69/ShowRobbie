@@ -39,6 +39,19 @@ class customMotions(ALModule):
 
         motionProxy.moveTo(0, 0, -1.57, stepArray)
 
+    def turnRight45(self):
+        motionProxy.moveInit()
+        motionProxy.setMoveArmsEnabled(True, True)
+        time.sleep(1)
+
+        motionProxy.moveTo(0, 0, -.875, stepArray)
+
+    def turnLeft45(self):
+        motionProxy.moveInit()
+        motionProxy.setMoveArmsEnabled(True, True)
+        time.sleep(1)
+
+        motionProxy.moveTo(0, 0, .875, stepArray)
 
     def lookAround(self):
         motionProxy.moveInit()

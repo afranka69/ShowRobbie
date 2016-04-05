@@ -62,7 +62,7 @@ def main():
     cm.wait(id,0)
     tts.say("Hello, I am Robbie.")
 
-    id = cm.post.turnRight90()
+    id = cm.post.turnRight45()
     cm.wait(id,0)
     id = cm.post.detectMarkAndMoveToLeft()
     cm.wait(id,0)
@@ -75,9 +75,6 @@ def main():
     #cm.wait(id, 0)
     #time.sleep(2)
     #tts.say("I am turned around")
-
-
-
 
 
     postureProxy.goToPosture("Sit", 1.0)

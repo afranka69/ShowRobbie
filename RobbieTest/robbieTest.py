@@ -205,6 +205,6 @@ turnAround()'''
 #print motionProxy.getAngles("HeadYaw", False)
 
 
-detectMarkAndMoveTo()
+motionProxy.setStiffnesses("Body", 0)
 
-postureProxy.goToPosture("Sit", 1.0)
+#postureProxy.goToPosture("Sit", 1.0)
