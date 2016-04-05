@@ -1,0 +1,11 @@
+import argparse
+import motion
+import time
+import almath
+from naoqi import ALProxy
+robotIP = "10.0.0.7"
+PORT = 9559
+
+
+motionProxy = ALProxy("ALMotion", robotIP, PORT)
+motionProxy.setStiffnesses("Body", 0)
