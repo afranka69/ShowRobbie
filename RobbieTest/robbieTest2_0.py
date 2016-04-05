@@ -263,8 +263,8 @@ class customMotions(ALModule):
         x,y,z = NaoMarkModule.getMarkXYZ(robotIP, PORT, markD, naomarkSize)
         customMotions.moveForwardY(self,x, y +.30)
 
-     def detectMarkAndMoveToLeft(self, number):
-        markD = customMotions.lookAroundForMark(self, 80)
+    def detectMarkAndMoveToLeft(self, number):
+        markD = customMotions.lookAroundForMark(self,number)
         x,y,z = NaoMarkModule.getMarkXYZ(robotIP, PORT, markD, naomarkSize)
         customMotions.moveForwardY(self,x, y +.30)
 

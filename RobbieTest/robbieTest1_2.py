@@ -76,7 +76,7 @@ def main():
     #time.sleep(2)
     #tts.say("I am turned around")
 
-    id = cm.post.detectMarkAndMoveToLeft()
+    id = cm.post.detectMarkAndMoveToLeft(64)
     cm.wait(id,0)
 
     postureProxy.goToPosture("Sit", 1.0)
