@@ -4,6 +4,8 @@
 
 from naoqi import ALProxy
 from naoqi import ALModule
+import sys
+import os
 
 # Global variable
 memory = None
@@ -50,6 +52,11 @@ class BotFreezerModule(ALModule):
         print "Stopping walk"
         self.tts.stopMove();
         self.tts.rest();
+
+        try:
+            sys.exit(0)
+        except SystemExit:
+            os._exit(0)
 
         # Subscribe again to the event
         memory.subscribeToEvent("FrontTactilTouched",

@@ -44,23 +44,25 @@ def getMarkAngles (markData):
 #Finds and returns the x,y,z position of a nao mark
 #relative to nao's camera
 def getMarkXYZ (IP, portNumber, markData, landmarkSize):
-
+    print "0"
     currentCamera = "CameraTop"
-
+    print "1"
     # Retrieve landmark angular size in radians.
     angularSize = markData[1][0][0][3]
-
+    print "2"
     # Compute distance to landmark.
     distanceFromCameraToLandmark = landmarkSize / ( 2 * math.tan( angularSize / 2))
-
+    print "3"
     motionProxy = ALProxy("ALMotion", IP, portNumber)
-
+    print "4"
     # Retrieve landmark center position in radians.
     wzCamera = markData[1][0][0][1]
+    print "5"
     wyCamera = markData[1][0][0][2]
-
+    print "6"
     # Get current camera position in NAO space.
     transform = motionProxy.getTransform(currentCamera, 2, True)
+    print "7"
     transformList = almath.vectorFloat(transform)
     robotToCamera = almath.Transform(transformList)
 
