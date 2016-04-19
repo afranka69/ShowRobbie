@@ -178,7 +178,7 @@ class customMotions(ALModule):
 
         while(not markFound):
 
-            if(attempts >=3):
+            if(attempts >=2):
                 return None
             if (back):
                 angleLists = angleLists -.125
@@ -337,10 +337,15 @@ class customMotions(ALModule):
         x,y,z = NaoMarkModule.getMarkXYZ(robotIP, PORT, markD, naomarkSize)
         customMotions.moveForwardY(self,x-.15, y -.1)
 
-    def detectMarkAndMoveToBalcony(self):
-        markD = customMotions.lookAroundForMark(self, 64)
+    def detectMarkAndMoveTo75(self, number):
+        markD = customMotions.lookAroundForMark(self, number)
         x,y,z = NaoMarkModule.getMarkXYZ(robotIP, PORT, markD, naomarkSize)
-        customMotions.moveForwardY(self,x *.5, y)
+        customMotions.moveForwardY(self,x *.75, y)
+
+    def detectMarkAndMoveTo75Right(self, number):
+        markD = customMotions.lookAroundForMark(self, number)
+        x,y,z = NaoMarkModule.getMarkXYZ(robotIP, PORT, markD, naomarkSize)
+        customMotions.moveForwardY(self,x *.75, y-.4)
 
     def detectMarkAndMoveToRight(self):
         markD = customMotions.lookAroundForMark(self)

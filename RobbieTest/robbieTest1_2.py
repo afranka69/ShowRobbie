@@ -50,12 +50,18 @@ def main():
     motionProxy.setExternalCollisionProtectionEnabled("All", False)
 
 
-    '''id = cm.post.detectMarkAndMoveToRight(64)
+    id = cm.post.detectMarkAndMoveTo75Right(80)
     cm.wait(id,0)
-    id = cm.post.detectMarkAndMoveToBalcony()
+
+    id = cm.post.moveForwardY(0,-.2)
+    cm.wait(id,0)
+    id = cm.post.detectMarkAndMoveTo75(64)
     cm.wait(id,0)
 
     id = cm.post.turnRight90()
+    cm.wait(id,0)
+
+    id = cm.post.lookAroundForMark(114)
     cm.wait(id,0)
 
     id = cm.post.wave()
@@ -64,12 +70,12 @@ def main():
 
     id = cm.post.turnRight50()
     cm.wait(id,0)
-    id = cm.post.detectMarkSearch(80, "l")
+    id = cm.post.detectMarkSearch(64, "l")
     cm.wait(id,0)
     id = cm.post.detectMarkAndMoveTo(68)
     cm.wait(id,0)
     id = cm.post.turnAround()
-    cm.wait(id,0)'''
+    cm.wait(id,0)
 
     #id = cm.post.turnAround()
     #cm.wait(id, 0)
