@@ -17,16 +17,5 @@ speechRec = ALProxy("ALSpeechRecognition", robotIP, PORT)
 memory = ALProxy("ALMemory", robotIP, PORT)
 speechRec.setLanguage("English")
 
-vocabulary = ["yes", "no", "please"]
-speechRec.setVocabulary(vocabulary, True)
-
-speechRec.subscribe("Test")
-
-time.sleep(20)
-
-
 speechRec.unsubscribe("Test")
 
-data = memory.getData("WordRecognized")
-
-print( "data: %s" % data )
