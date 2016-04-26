@@ -1,4 +1,4 @@
-#Created for testing the FootFreezerModule along with the BotFreezerModule and customMotions
+
 
 from motions import customMotions
 import time
@@ -19,15 +19,12 @@ curAngle = 0
 
 # Global variables to store the module instances
 BotFreezer = None
-FootFreezer = None
 cmModule = None
+FootFreezer = None
 
 
 def main():
-    """ Main entry point
-    """
 
-    ########################FOR FREEZING BOT#######################
     global brokyControlly
     brokyControlly = BrokerController()
     brokyControlly.createBroker()
@@ -41,43 +38,15 @@ def main():
     global cmModule
     cmModule = customMotions("cmModule")
     cm = ALProxy("cmModule")
+    #global FootFreezer
+    #FootFreezer = FootFreezerModule("FootFreezer")
     ###################FOR FREEZING BOT############################
 
-    ########################FOR FOOT#######################
-    global FootFreezer
-    FootFreezer = FootFreezerModule("FootFreezer")
 
-    ###################FOR FOOT############################
+    id = cm.post.fistBump()
+    cm.wait(id,0)
 
-    stiffnesses  = 1.0
-    motionProxy.setStiffnesses("Body", stiffnesses)
     postureProxy.goToPosture("StandInit", 1.0)
-    time.sleep(1)
-
-    motionProxy.setExternalCollisionProtectionEnabled("All", False)
-
-    #id = cm.post.detectMarkAndMoveToRight()
-    #cm.wait(id,0)
-    id = cm.post.moveForward(1)
-    cm.wait(id,0)
-    id = cm.post.wave()
-    cm.wait(id,0)
-    tts.say("Hello, I am Robbie.")
-    id = cm.post.turnAround()
-    cm.wait(id,0)
-    #id = cm.post.detectMarkAndMoveToLeft()
-    #cm.wait(id,0)
-    #id = cm.post.detectMarkAndMoveTo()
-    #cm.wait(id,0)
-    id = cm.post.turnAround()
-    cm.wait(id,0)
-
-    #id = cm.post.turnAround()
-    #cm.wait(id, 0)
-    #time.sleep(2)
-    #tts.say("I am turned around")
-
-    postureProxy.goToPosture("Sit", 1.0)
 
     #################FOR FREEZING BOT###########################
     # end broker to stop

@@ -1,7 +1,7 @@
 #TEsts the searching for nao marks with the ability to stop him by touching his head tactils
 
 
-from robbieTest2_0 import customMotions
+from motions import customMotions
 import time
 from naoqi import ALProxy
 #For Freezing Bot
@@ -53,9 +53,6 @@ def main():
 
     motionProxy.setExternalCollisionProtectionEnabled("All", False)
 
-
-
-
     id = cm.post.detectMarkAndMoveTo75Right(80)
     cm.wait(id,0)
 
@@ -72,7 +69,9 @@ def main():
 
     id = cm.post.wave()
     cm.wait(id,0)
-    tts.say("Hello, I am Robbie.")
+    tts.say("Hello, I am Robbie. I'm a NAO robot. I'm designed and manufactured by the Aldebaan company in France, but all of my present behaviors have been programmed as part of a Senior Software Engineering project")
+    tts.say("There's very little I can do without the programs that have designed and constructed by the Senior Software Engineering students here at Montana Tech. I'm afraid that programming me is not easy, but these students have been well equiped by their education here at Tech to deal with complex problems.")
+
 
     id = cm.post.fistBump()
     cm.wait(id,0)
