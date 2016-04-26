@@ -232,6 +232,25 @@ class customMotions(ALModule):
             customMotions.moveForwardY(self,x, y)
 
 
+    def detectMarkSearchForward(self, number):
+        markD = None
+        searching = True
+        global naomarkSize
+        global robotIP
+        global PORT
+        while(searching):
+            markD = customMotions.lookAroundForMarkMoving(self, number)
+            if(not (markD is None or len(markD) ==0)):
+                 print "found something"
+                 searching = False
+            else :
+                print "tried turn"
+                customMotions.moveForward(self, .02)
+
+        x,y,z = NaoMarkModule.getMarkXYZ(robotIP, PORT, markD, naomarkSize)
+
+        customMotions.moveForwardY(self,x, y)
+
 
     def turnToHeadStraight(self,markData):
          motionProxy.moveInit()
@@ -316,6 +335,7 @@ class customMotions(ALModule):
         angleLists = [[0.0], [-30*almath.TO_RAD], [3.0*almath.TO_RAD]]
         timeLists  = [[1.0],[1.0], [1.0]]
         isAbsolute = True
+        tts.say("Pound it")
         motionProxy.angleInterpolation(names, angleLists, timeLists, isAbsolute)
 
         #time.sleep(3)

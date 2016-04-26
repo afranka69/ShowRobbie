@@ -1,5 +1,4 @@
-#TEsts the searching for nao marks with the ability to stop him by touching his head tactils
-
+#Created for testing the FootFreezerModule along with the BotFreezerModule and customMotions
 
 from robbieTest2_0 import customMotions
 import time
@@ -20,8 +19,8 @@ curAngle = 0
 
 # Global variables to store the module instances
 BotFreezer = None
-cmModule = None
 FootFreezer = None
+cmModule = None
 
 
 def main():
@@ -42,9 +41,13 @@ def main():
     global cmModule
     cmModule = customMotions("cmModule")
     cm = ALProxy("cmModule")
-    #global FootFreezer
-    #FootFreezer = FootFreezerModule("FootFreezer")
     ###################FOR FREEZING BOT############################
+
+    ########################FOR FOOT#######################
+    global FootFreezer
+    FootFreezer = FootFreezerModule("FootFreezer")
+
+    ###################FOR FOOT############################
 
     stiffnesses  = 1.0
     motionProxy.setStiffnesses("Body", stiffnesses)
@@ -53,40 +56,19 @@ def main():
 
     motionProxy.setExternalCollisionProtectionEnabled("All", False)
 
-
-
-
-    id = cm.post.detectMarkAndMoveTo75Right(80)
+    #id = cm.post.detectMarkAndMoveToRight()
+    #cm.wait(id,0)
+    id = cm.post.moveForward(1)
     cm.wait(id,0)
-
-    id = cm.post.moveForwardY(0,-.2)
-    cm.wait(id,0)
-    id = cm.post.detectMarkAndMoveTo75(107)
-    cm.wait(id,0)
-
-    id = cm.post.turnRight90()
-    cm.wait(id,0)
-
-    id = cm.post.lookAroundForMark(114)
-    cm.wait(id,0)
-
     id = cm.post.wave()
     cm.wait(id,0)
     tts.say("Hello, I am Robbie.")
-
-    id = cm.post.fistBump()
+    id = cm.post.turnAround()
     cm.wait(id,0)
-
-    id = cm.post.turnRight50()
-    cm.wait(id,0)
-    id = cm.post.detectMarkSearch(64, "l")
-    cm.wait(id,0)
-
-    id = cm.post.moveForward(.2)
-    cm.wait(id,0)
-
-    id = cm.post.detectMarkSearchForward(68)
-    cm.wait(id,0)
+    #id = cm.post.detectMarkAndMoveToLeft()
+    #cm.wait(id,0)
+    #id = cm.post.detectMarkAndMoveTo()
+    #cm.wait(id,0)
     id = cm.post.turnAround()
     cm.wait(id,0)
 
@@ -94,8 +76,6 @@ def main():
     #cm.wait(id, 0)
     #time.sleep(2)
     #tts.say("I am turned around")
-
-
 
     postureProxy.goToPosture("Sit", 1.0)
 
