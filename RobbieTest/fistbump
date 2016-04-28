@@ -42,7 +42,7 @@ def main():
     #FootFreezer = FootFreezerModule("FootFreezer")
     ###################FOR FREEZING BOT############################
 
-    tts.say("pound it")
+
 
     id = cm.post.fistBump()
     cm.wait(id,0)
